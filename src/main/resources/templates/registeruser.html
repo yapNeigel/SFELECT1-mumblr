@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Mumblr</title>
+</head>
+<body>
+	<div class="site-title">
+		<h2>Fname:</h2>
+		<h3 th:text="${registeredUser.fname}"></h3>
+		
+		<h2>Lname:</h2>
+		<h3 th:text="${registeredUser.lname}"></h3>
+		
+		<h2>Email:</h2>
+		<h3 th:text="${registeredUser.email}"></h3>
+	</div>
+</body>
+</html>
