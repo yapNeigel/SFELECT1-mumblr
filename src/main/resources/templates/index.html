@@ -6,96 +6,174 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="../../js/homepage.js" type="text/javascript"></script>
 </head>
-<style>
-.grid-left { grid-area: left; }
-.grid-right { grid-area: right; }
 
-.grid-container
-{
-  display: grid;
-  grid-template-areas:
-    'left left left right right right';
-  text-align: center;
-}
+<style>
+	.grid-left { grid-area: left; border: 1px solid black;}
+	.grid-right { grid-area: right; border: 1px solid black;}
+	.grid-container
+		{
+			display: grid;
+			grid-template-areas:'left right';
+			background-color: #98c1d9;
+			text-align: center;
+			border: 1px solid black;
+		}
+			
+	.modal /* The Modal (background) */
+		{
+		    display: none; /* Hidden by default */
+		    position: fixed; /* Stay in place */
+		    z-index: 1; /* Sit on top */
+		    padding-top: 100px; /* Location of the box */
+		    left: 0;
+		    top: 0;
+		    width: 100%; /* Full width */
+		    height: 100%; /* Full height */
+		    overflow: auto; /* Enable scroll if needed */
+		    background-color: rgb(0,0,0); /* Fallback color */
+		    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+		
+	.modal-content /* Modal Content */
+		{
+		    background-color: #fefefe; margin: auto; padding: 20px; border: 1px solid #888; width: 80%;
+		}
+	
+	.close /* The Close Button */
+		{
+		    color: #aaaaaa; float: right; font-size: 28px; font-weight: bold;
+		}
+	.close:hover,
+	.close:focus {color: black;text-decoration: none;cursor: pointer;}
 </style>
-<body>
-	<div class="site-title">
-		<h1 align="center">Welcome To Mumblr</h1>
+
+<body bgcolor="#22333b">
+
+	<div class="site-header">
+		<h1 align="center" style="color:#e0e2db">Welcome To Mumblr</h1>
 	</div>
 	
 	<div class="grid-container">
 		<div class="grid-left">
 		<img src = "../templates/mumblr.jpg"></br>
-		<input type="button" value="LOG IN">
+		<!-- Trigger/Open The Modal -->
+		<button id="myBtn">Open Modal</button>
 		</div>
 	
 	
-	<div class= "grid-right">
-		<h2 align="center">Sign Up</h2>
-		<div class="form">
-			<form action="registered" method="post">
-				<input type="text" name="fname" id="fname" placeholder="First name">
-				<input type="text" name="lname" id="lname" placeholder="Last name"></br>
-				<input type="email" name="email" id="email" placeholder="Email"></br>
-				<input type="password" name="pass" id="pass" placeholder="Password"></br>
-				<input type="password" name="pass_c" id="pass_c" placeholder="Confirm password"></br>
+		<div class= "grid-right">
+			<h2>Sign up</h2>
+			<div class="form">
+				<form action="registered" method="post">
 				
-				<select name="b_month" id="b_month">
-					<option value="1">Jan</option>
-					<option value="2">Feb</option>
-					<option value="3">March</option>
-					<option value="4">Apr</option>
-					<option value="5">May</option>
-					<option value="6">Jun</option>
-					<option value="7">Jul</option>
-					<option value="8">Aug</option>
-					<option value="9">Sept</option>
-					<option value="10">Oct</option>
-					<option value="11">Nov</option>
-					<option value="12">Dec</option>
-				</select>
-				<select name="b_day" id="b_day">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
-					<option value="24">24</option>
-					<option value="25">25</option>
-					<option value="26">26</option>
-					<option value="27">27</option>
-					<option value="28">28</option>
-					<option value="29">29</option>
-					<option value="30">30</option>
-					<option value="31">31</option>
-				</select>
-				<select name="b_year" id="b_year">
+					<input type="text" name="fname" id="fname" placeholder="First name">
+					<input type="text" name="lname" id="lname" placeholder="Last name"></br></br>
+					<input type="email" name="email" id="email" placeholder="Email"></br></br>
+					<input type="password" name="pass" id="pass" placeholder="Password"></br></br>
+					<input type="password" name="pass_c" id="pass_c" placeholder="Confirm password"></br></br>
 					
-				</select></br></br>
-				
-				<input type="submit" value="Submit">
-				
-			</form>
+					<select name="b_month" id="b_month">
+						<option value="1">Jan</option>
+						<option value="2">Feb</option>
+						<option value="3">March</option>
+						<option value="4">Apr</option>
+						<option value="5">May</option>
+						<option value="6">Jun</option>
+						<option value="7">Jul</option>
+						<option value="8">Aug</option>
+						<option value="9">Sept</option>
+						<option value="10">Oct</option>
+						<option value="11">Nov</option>
+						<option value="12">Dec</option>
+					</select>
+					<select name="b_day" id="b_day">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+					<select name="b_year" id="b_year"></select></br></br>
+					<input type="submit" value="Submit">
+				</form>
 			</div>
 		</div>
 	</div>
+	
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>
+    	<p>PUTANGINA GUMANA KA NAMAN PLEASE!! oh shit gumana na siya. wow.</p>
+    	<input type="text" name="logInUserName" id="logInUserName" placeholder="Username"></br>
+		<input type="password" name="logInpassword" id="logInpassword" placeholder="Password"></br></br>
+		
+		<form action="homepage.html" method="post"> <!-- wala pang homepage.html, testing purposes only-->
+		<input type="submit" value="Submit">
+		</form>
+	</div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function()
+{
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function()
+{
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event)
+{
+    if (event.target == modal)
+    {
+        modal.style.display = "none";
+    }
+}
+</script>
+
 </body>
 </html>
