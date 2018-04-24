@@ -1,5 +1,6 @@
 package com.mumblr.select1.mumblr.controller;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.web.bind.annotation.ModelAttribute;  
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.bind.annotation.RequestMethod;  
@@ -23,7 +24,13 @@ public class RegisterController {
 	}
 	@RequestMapping(value="/registered", method=RequestMethod.POST)  
 	public ModelAndView save(@ModelAttribute Accounts register){
+		
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+		String encryptedPassword = passwordEncryptor.encryptPassword(register.getPass());
+		
+		register.setPass(encryptedPassword);
 		ur.save(register);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("registeruser");      
 		modelAndView.addObject("registeredUser", register);    
