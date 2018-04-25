@@ -1,0 +1,42 @@
+body{
+	margin: 0;
+	background-color: #22333b;
+}
+.col{
+	float: left;
+}
+.col.side{
+	width: 23%;
+	border-radius: 5px;
+	background-color: #98c1d9;
+}
+
+.col.wall{
+	margin: 0 15px 0;
+	width: 50%;
+	height: 100vh;
+	background-color: #e0e2db;
+}
+
+.row:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+@media (max-width: 600px) {
+	.col.side, .col.wall {
+		width: 100%;
+	}
+}
+.container{
+	
+	margin: 0 150px 0;
+}
+.profile_pic{
+	float: left;
+	width:85px;
+    height: auto;
+}
+.user_details{
+	padding:15px;
+}
