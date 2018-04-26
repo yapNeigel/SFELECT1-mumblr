@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mumblr.select1.mumblr.model.Accounts;
 import com.mumblr.select1.mumblr.repository.LoginRepository;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
@@ -19,10 +20,23 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public ModelAndView find(@RequestParam("email") String email,@RequestParam("pass") String pass){
-//		lr.findByemailAndpass(email,pass);
+		StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
+//		Accounts acc = lr.findByEmailAndPass(email,spe.encryptPassword(pass));
+		Accounts acc = lr.findByEmail(email);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("home");
-		modelAndView.addObject("loginUser", lr.findByEmailAndPass(email,pass));
+		
+//		if(acc.getEmail().isEmpty() && acc.getPass().isEmpty()){
+		if(acc.getEmail().isEmpty()){
+			modelAndView.setViewName("index");
+		}else{
+			if(spe.checkPassword(pass, acc.getPass())){
+				modelAndView.setViewName("home");
+				modelAndView.addObject("loginUser", acc);
+			}else{
+				modelAndView.setViewName("index");
+			}
+		}
+
 		return modelAndView;
 	}
 }

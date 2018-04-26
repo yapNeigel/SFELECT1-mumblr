@@ -4,5 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.mumblr.select1.mumblr.model.Accounts;
 
 public interface LoginRepository extends MongoRepository<Accounts, String> {
-	public Accounts findByEmailAndPass(String email,String pass);
+//	public Accounts findByEmailAndPass(String email,String pass);
+	public Accounts findByEmail(String email);
 }
