@@ -1,3 +1,6 @@
+.errorMessage {
+  border:2px solid red;
+}
 .grid-left { grid-area: left; border: 1px solid black;}
 .grid-right { grid-area: right; border: 1px solid black;}
 .grid-container
