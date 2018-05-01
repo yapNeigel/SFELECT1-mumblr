@@ -38,7 +38,7 @@ public class RegisterController {
 
 		return "index";
 	}
-	@RequestMapping(value="/register", method=RequestMethod.POST)  
+	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public ModelAndView save(@ModelAttribute Accounts register, Model model){
 		
 		ModelAndView modelAndView = new ModelAndView();

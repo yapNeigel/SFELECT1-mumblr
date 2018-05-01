@@ -20,7 +20,6 @@ public class LoginController {
 	@Autowired
 	private UserRepository ur;
 	
-	
 	@RequestMapping(value="/home")
 	public String home(HttpSession httpSession){
 		
@@ -34,7 +33,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method={RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView find(@RequestParam(value="emailLogin", required=false) String email,@RequestParam(value="passLogin", required=false) String pass, HttpSession httpSession){
-		
+	
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(email == null || pass == null){
