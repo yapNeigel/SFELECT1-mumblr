@@ -4,25 +4,16 @@
 	<meta charset="ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mumblr</title>
-	<link rel="stylesheet" href="../static/css/styles.css">
+	<!--<link rel="stylesheet" href="../static/css/styles.css">-->
+	<link rel="stylesheet" href="../../css/flatly-bootstrap.css">
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col side">
-				<div class="user_details">
-					<img class="profile_pic" src="../static/hackerman.jpg" width="640" height="640">			
-					<h2 th:text="${loginUser.email}"></h2>
-					<h2 th:text="${loginUser.pass}"></h2>
-				</div>
-			</div>
-			<div class="col wall">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
-			</div>
-			<div class="col side">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
-			</div>
-		</div>
+		<h1>Create Post</h1>
+		<form>
+			<textarea class="form-control" id="content" rows="3"></textarea>
+			<input type="hidden" id="poster" value="${loginUser.id}">
+		</form>
 	</div>
 </body>
 </html>

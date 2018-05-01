@@ -5,35 +5,60 @@
 $(document).ready(function ()
 	{
 	
-		console.log('hey');
+		//Back-End Validation CSS Changer JS
+		var errorMsg = document.getElementById("errorMsg").innerHTML;
+		if(errorMsg.match("First Name")){
+			$('#fname').addClass('errorMessage');
+		}
+		if(errorMsg.match("Last Name")){
+			$('#lname').addClass('errorMessage');
+		}
+		if(errorMsg.match("Email")){
+			$('#email').addClass('errorMessage');
+		}
+		if(errorMsg.match("Password")){
+			$('#pass').addClass('errorMessage');
+			$('#pass_c').addClass('errorMessage');
+		}
+		
+		$('#fname').keypress(function(){
+			$('#fname').removeClass('errorMessage');
+		});
+		$('#lname').keypress(function(){
+			$('#lname').removeClass('errorMessage');
+		});
+		$('#email').keypress(function(){
+			$('#email').removeClass('errorMessage');
+		});
+		$('#pass').keypress(function(){
+			$('#pass').removeClass('errorMessage');
+		});
+		$('#pass_c').keypress(function(){
+			$('#pass_c').removeClass('errorMessage');
+		});
+		//Back-End Validation CSS Changer JS
+		
+		//Birth Year JS
 		var currentYear = (new Date()).getFullYear();
 		var minimumYear = currentYear - 70;
 		for(i = currentYear; i >= minimumYear; i--)
 		{
 			$("#b_year").get(0).options[$("#b_year").get(0).options.length] = new Option(i, i);
 		}
+		//Birth Year JS
 		
+		//Modal JS
 		var modal = document.getElementById('myModal');
-
-		//Get the button that opens the modal
 		var btn = document.getElementById("myBtn");
-
-		//Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
-
-		//When the user clicks the button, open the modal 
 		btn.onclick = function()
 		{
 		 modal.style.display = "block";
 		}
-
-		//When the user clicks on <span> (x), close the modal
 		span.onclick = function()
 		{
 		 modal.style.display = "none";
 		}
-
-		//When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event)
 		{
 		 if (event.target == modal)
@@ -41,5 +66,6 @@ $(document).ready(function ()
 		     modal.style.display = "none";
 		 }
 		}
+		//Modal JS
 	}
 );
