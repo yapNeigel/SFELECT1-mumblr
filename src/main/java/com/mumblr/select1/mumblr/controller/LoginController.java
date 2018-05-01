@@ -3,7 +3,6 @@ package com.mumblr.select1.mumblr.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +23,6 @@ public class LoginController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public ModelAndView find(@RequestParam("emailLogin") String email,@RequestParam("passLogin") String pass, HttpSession httpSession){
 		StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
-
 		Accounts acc = ur.findByemail(email);
 		ModelAndView modelAndView = new ModelAndView();
 		
