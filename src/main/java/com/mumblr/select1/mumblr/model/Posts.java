@@ -17,7 +17,8 @@ public class Posts {
 	@Override
     public String toString(){
         return String.format(
-    		"Accounts[id=%s, postDate='%s', content='%s', poster='%s', likes='%s', comment='%s']", id, postDate, content, poster, likes, comment);
+    		"Posts[id=%s, postDate='%s', postTime='%s', content='%s', poster='%s', likes='%s',"
+    		+ " comment='%s']", id, postDate, postTime, content, poster, likes, comment);
     }
 
 	public String getId() {
@@ -75,4 +76,12 @@ public class Posts {
 	public void setPostTime(String postTime) {
 		this.postTime = postTime;
 	}
+
+//	public String getLikes() {
+//		return likes;
+//	}
+//
+//	public void setLikes(String likes) {
+//		this.likes = likes;
+//	}
 }
