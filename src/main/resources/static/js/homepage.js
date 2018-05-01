@@ -13,7 +13,7 @@ $(document).ready(function ()
 		if(errorMsg.match("Last Name")){
 			$('#lname').addClass('errorMessage');
 		}
-		if(errorMsg.match("Email")){
+		if(errorMsg.match("Email") || errorMsg.match("Email (Exists)")){
 			$('#email').addClass('errorMessage');
 		}
 		if(errorMsg.match("Password")){

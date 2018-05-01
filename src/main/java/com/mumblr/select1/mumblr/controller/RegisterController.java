@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpSession;
+
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;  
@@ -23,14 +25,18 @@ public class RegisterController {
 	
 	@Autowired
 	private UserRepository ur;
-	private static final String passPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,}$";
+	private static final String passPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$";
 	private Pattern pattern;
 	private Matcher matcher;
 	
 	
 	@RequestMapping("/")  
-	public String index(){  
-		return "index";  
+	public String index(HttpSession httpSession){  
+		if(httpSession.getAttribute("userAcc") != null){
+			return "home";
+		} 
+
+		return "index";
 	}
 	@RequestMapping(value="/register", method=RequestMethod.POST)  
 	public ModelAndView save(@ModelAttribute Accounts register, Model model){
@@ -39,7 +45,7 @@ public class RegisterController {
 		
 		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 		String encryptedPassword = passwordEncryptor.encryptPassword(register.getPass());
-		
+		Accounts acc = ur.findByemail(register.getEmail());
 		pattern = Pattern.compile(passPattern);
 		matcher = pattern.matcher(register.getPass());
 		String errorMsg = "Properly fill out the following fields: ";
@@ -55,6 +61,12 @@ public class RegisterController {
 		
 		if(register.getEmail().isEmpty()){
 			error.add("Email");
+		} else {
+			if(acc != null){
+				if(register.getEmail().equals(acc.getEmail())){
+					error.add("Email (Exists)");
+				}
+			}
 		}
 		
 		if(!matcher.matches()){
