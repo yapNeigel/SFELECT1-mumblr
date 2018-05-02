@@ -4,10 +4,11 @@ public class Posts {
 	
 	private String id;
 	private String postDate;
-	private String postTime;
+//	private String postTime;
 	private String content;
 	private String poster;
 	private String posterID;
+	private String postType;
 	private int likes;
 	private Comments[] comment;
 	
@@ -15,21 +16,22 @@ public class Posts {
 		
 	}
 	
-	public Posts(String id, String posterID, String postDate, String postTime, String content, String poster, int likes){
+	public Posts(String id, String posterID, String postDate, String content, String poster, int likes, String posterType){
 		this.id = id;
 		this.posterID = posterID;
 		this.postDate = postDate;
-		this.postTime = postTime;
+//		this.postTime = postTime;
 		this.content = content;
 		this.poster = poster;
+		this.postType = postType;
 		this.likes = likes;
 	}
 	
 	@Override
     public String toString(){
         return String.format(
-    		"Posts[id=%s, posterID=%s, postDate='%s', postTime='%s', content='%s', poster='%s', likes='%s',"
-    		+ " comment='%s']", id, posterID, postDate, postTime, content, poster, likes, comment);
+    		"Posts[id=%s, posterID=%s, postDate='%s', content='%s', poster='%s', postType='%s', likes='%s',"
+    		+ " comment='%s']", id, posterID, postDate, content, poster, likes, comment);
     }
 
 	public String getPosterID() {
@@ -88,12 +90,20 @@ public class Posts {
 		this.comment = comment;
 	}
 
-	public String getPostTime() {
-		return postTime;
+//	public String getPostTime() {
+//		return postTime;
+//	}
+//
+//	public void setPostTime(String postTime) {
+//		this.postTime = postTime;
+//	}
+
+	public String getPostType() {
+		return postType;
 	}
 
-	public void setPostTime(String postTime) {
-		this.postTime = postTime;
+	public void setPostType(String postType) {
+		this.postType = postType;
 	}
 
 //	public String getLikes() {

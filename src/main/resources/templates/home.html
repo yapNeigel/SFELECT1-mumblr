@@ -16,7 +16,7 @@
 			<textarea class="form-control" id="content" name="content" rows="3"></textarea>
 			<input type="hidden" id="posterID" name="posterID" th:value="${session.userAcc.id}">
 			<input type="hidden" id="postDate" name="postDate">
-			<input type="hidden" id="postTime" name="postTime">
+			<!-- <input type="hidden" id="postTime" name="postTime">-->
 			<!-- <input type="hidden" id="likes" name="likes"value="0"> -->
 			<button type="submit" id="post_btn" class="btn btn-info">Post!</button>
 		</form>
@@ -26,8 +26,8 @@
 		<div class="col-md-6">
 			<h2 th:text="${post.poster}"></h2>
 			<p th:text="${post.content}"></p>
-			<p th:text="${post.postDate}"></p>
-			<p th:text="${post.postTime}"></p>
+			<p th:text="${post.postDate}" class="formatUTC"></p>
+			<!-- <p th:text="${post.postTime}"></p>-->
 			<button type="submit" id="update_btn" name="update_btn" class="btn btn-info">Update!</button>
 			<button type="submit" id="delete_btn" name="delete_btn" class="btn btn-info">Delete!</button>
 		</div>
