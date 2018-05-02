@@ -1,8 +1,11 @@
 package com.mumblr.select1.mumblr.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mumblr.select1.mumblr.model.Accounts;
+import com.mumblr.select1.mumblr.model.Posts;
+import com.mumblr.select1.mumblr.repository.PostsRepository;
 import com.mumblr.select1.mumblr.repository.UserRepository;
 
 import org.jasypt.util.password.StrongPasswordEncryptor;
@@ -19,11 +24,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class LoginController {
 	@Autowired
 	private UserRepository ur;
+	@Autowired
+	private PostsRepository pr;
 	
 	@RequestMapping(value="/home")
-	public String home(HttpSession httpSession){
+	public String home(HttpSession httpSession, Model model){
 		
 		if(httpSession.getAttribute("userAcc") != null){
+			Accounts acc = (Accounts) httpSession.getAttribute("userAcc");
+			List<Posts> posts = pr.findByPosterID(acc.getId());
+			model.addAttribute("userPosts", posts);
 			return "home";
 		} 
 
@@ -46,7 +56,9 @@ public class LoginController {
 				modelAndView.setViewName("index");
 			}else{
 				if(spe.checkPassword(pass, acc.getPass())){
+					List<Posts> posts = pr.findByPosterID(acc.getId());
 					modelAndView.setViewName("home");
+					modelAndView.addObject("userPosts", posts);
 					modelAndView.addObject("loginUser", acc);
 					httpSession.setAttribute("userAcc", acc);
 				}else{

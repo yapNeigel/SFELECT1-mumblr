@@ -7,19 +7,38 @@ public class Posts {
 	private String postTime;
 	private String content;
 	private String poster;
+	private String posterID;
 	private int likes;
 	private Comments[] comment;
 	
-	Posts(){
+	public Posts(){
 		
+	}
+	
+	public Posts(String id, String posterID, String postDate, String postTime, String content, String poster, int likes){
+		this.id = id;
+		this.posterID = posterID;
+		this.postDate = postDate;
+		this.postTime = postTime;
+		this.content = content;
+		this.poster = poster;
+		this.likes = likes;
 	}
 	
 	@Override
     public String toString(){
         return String.format(
-    		"Posts[id=%s, postDate='%s', postTime='%s', content='%s', poster='%s', likes='%s',"
-    		+ " comment='%s']", id, postDate, postTime, content, poster, likes, comment);
+    		"Posts[id=%s, posterID=%s, postDate='%s', postTime='%s', content='%s', poster='%s', likes='%s',"
+    		+ " comment='%s']", id, posterID, postDate, postTime, content, poster, likes, comment);
     }
+
+	public String getPosterID() {
+		return posterID;
+	}
+
+	public void setPosterID(String posterID) {
+		this.posterID = posterID;
+	}
 
 	public String getId() {
 		return id;
