@@ -3,23 +3,22 @@
  */
 
 $(document).ready(function (){
-//	var date = new Date();
-//	var dateFinal = date.toLocaleDateString();
-//	document.getElementById("postDate").value = dateFinal;
-//	
-//	$('#post_btn').click(function(){
-//		var timeFinal = date.toLocaleTimeString();
-//		$('#postTime').val(timeFinal);
-//	});
+	
+//	ClassicEditor.create( document.querySelector( '#content' ) ).catch( error => {
+//        console.error( error );
+//    } );
+	
+	$(function() { $('#content').froalaEditor() });
+	
+	/*CKEDITOR.replace( 'content',{
+	    filebrowserUploadUrl: 'https://api.imgur.com/3/upload'	
+	});*/
 	
 	$('#post_btn').click(function(){
 		var now = new Date();
 		var utcDate1 = new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(),now.getUTCMilliseconds()));
 		var utcfinal = utcDate1.toUTCString();
 		$('#postDate').val(utcfinal);
-//		var date = new Date(utcfinal);
-//	    document.getElementById("demo").innerHTML = utcfinal;
-//	    document.getElementById("demo2").innerHTML = date.toString();
 	});
 	
 	$('.formatUTC').each(function(i) {
