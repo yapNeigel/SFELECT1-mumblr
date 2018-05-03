@@ -1,5 +1,9 @@
 package com.mumblr.select1.mumblr.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mumblr.select1.mumblr.model.Accounts;
+import com.mumblr.select1.mumblr.model.Follow;
 import com.mumblr.select1.mumblr.model.Posts;
+import com.mumblr.select1.mumblr.repository.FollowRepository;
 import com.mumblr.select1.mumblr.repository.PostsRepository;
 import com.mumblr.select1.mumblr.repository.UserRepository;
 
@@ -26,13 +32,30 @@ public class LoginController {
 	private UserRepository ur;
 	@Autowired
 	private PostsRepository pr;
+	@Autowired
+	private FollowRepository fr;
 	
 	@RequestMapping(value="/home")
 	public String home(HttpSession httpSession, Model model){
 		
 		if(httpSession.getAttribute("userAcc") != null){
 			Accounts acc = (Accounts) httpSession.getAttribute("userAcc");
-			List<Posts> posts = pr.findByPosterID(acc.getId());
+			List<Posts> posts = new ArrayList<>();
+			List<Posts> userPosts = pr.findByPosterID(acc.getId());
+			List<Follow> followers = fr.findByuserID(acc.getId());
+			
+			posts.addAll(userPosts);
+			
+			if(followers != null){
+				for(Follow follower : followers){
+					List<Posts> followerPost = pr.findByPosterID(follower.getFollowersID());
+					posts.addAll(followerPost);
+				}
+			}
+			
+			Collections.sort(posts);
+			Collections.reverse(posts);
+			
 			model.addAttribute("userPosts", posts);
 			return "home";
 		} 
@@ -56,7 +79,22 @@ public class LoginController {
 				modelAndView.setViewName("index");
 			}else{
 				if(spe.checkPassword(pass, acc.getPass())){
-					List<Posts> posts = pr.findByPosterID(acc.getId());
+					
+					List<Posts> posts = new ArrayList<>();
+					List<Posts> userPosts = pr.findByPosterID(acc.getId());
+					List<Follow> followers = fr.findByuserID(acc.getId());
+					
+					posts.addAll(userPosts);
+					
+					if(followers != null){
+						for(Follow follower : followers){
+							List<Posts> followerPost = pr.findByPosterID(follower.getFollowersID());
+							posts.addAll(followerPost);
+						}
+					}
+					Collections.sort(posts);
+					Collections.reverse(posts);
+					
 					modelAndView.setViewName("home");
 					modelAndView.addObject("userPosts", posts);
 					modelAndView.addObject("loginUser", acc);

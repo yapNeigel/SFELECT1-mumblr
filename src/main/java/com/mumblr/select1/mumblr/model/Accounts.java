@@ -13,6 +13,7 @@ public class Accounts {
 	private String b_month;
 	private String b_day;
 	private String b_year;
+	private String fullName;
 	
 	public Accounts(){
 		
@@ -31,8 +32,8 @@ public class Accounts {
 	@Override
     public String toString(){
         return String.format(
-                "Accounts[id=%s, firstName='%s', lastName='%s', email='%s', pass='%s', b_month='%s', b_day='%s', b_year='%s']",
-                id, fname, lname, email, pass, b_month, b_day, b_year);
+                "Accounts[id=%s, firstName='%s', lastName='%s',fullName='%s', email='%s', pass='%s', b_month='%s', b_day='%s', b_year='%s']",
+                id, fname, lname, fullName, email, pass, b_month, b_day, b_year);
     }
 
 	public String getId() {
@@ -41,6 +42,14 @@ public class Accounts {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getFname() {

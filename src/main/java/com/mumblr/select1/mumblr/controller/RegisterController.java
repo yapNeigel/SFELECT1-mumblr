@@ -82,6 +82,7 @@ public class RegisterController {
 			modelAndView.setViewName("index");
 		} else {
 			register.setPass(encryptedPassword);
+			register.setFullName(register.getFname() + " " + register.getLname());
 			ur.save(register);
 			modelAndView.setViewName("registeruser");      
 			modelAndView.addObject("registeredUser", register);

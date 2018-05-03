@@ -22,6 +22,10 @@
 </head>
 <body>
 	<div class="container">
+		<form action="searchuser" method="get">
+			<input type="text" id="searchName" name="searchName">
+			<button type="submit" id="search_btn" class="btn btn-info">Search!</button>
+		</form>
 		<h1>Create Post</h1>
 		<form action="createpost" method="post">
 			<textarea id="content" name="content" rows="3"></textarea>

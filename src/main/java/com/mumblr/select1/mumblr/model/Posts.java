@@ -1,8 +1,11 @@
 package com.mumblr.select1.mumblr.model;
 
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class Posts {
+public class Posts implements Comparable<Posts>{
 	
 	private String id;
 	private String postDate;
@@ -32,6 +35,23 @@ public class Posts {
     		"Posts[id=%s, posterID=%s, postDate='%s', content='%s', poster='%s', likes='%s',"
     		+ " comment='%s']", id, posterID, postDate, content, poster, likes, comment);
     }
+	
+	@Override
+	  public int compareTo(Posts o) {
+		String string = getPostDate();
+		String stringTwo = o.getPostDate();
+		DateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
+		Date date = null;
+		Date date1 = null;
+		try {
+			date = format.parse(string);
+			date1 = format.parse(stringTwo);
+			return date.compareTo(date1);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		return date.compareTo(date1);
+	  }
 
 	public String getPosterID() {
 		return posterID;
