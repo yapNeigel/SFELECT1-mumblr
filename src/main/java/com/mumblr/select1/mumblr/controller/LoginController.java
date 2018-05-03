@@ -46,7 +46,7 @@ public class LoginController {
 	
 		ModelAndView modelAndView = new ModelAndView();
 		
-		if(email == null || pass == null){
+		if(email == null || pass == null || email.isEmpty() || pass.isEmpty()){
 			modelAndView.setViewName("index");
 		} else {
 			StrongPasswordEncryptor spe = new StrongPasswordEncryptor();

@@ -2,11 +2,21 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mumblr</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="../../js/homepage.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="../../css/design.css">
 	<link rel="stylesheet" href="../../css/flatly-bootstrap.css">
+	<style>
+	select {
+    width: 20%;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+</style>
 </head>
 
 
@@ -15,28 +25,30 @@
 	<div class="site-header">
 		<h1 align="center" style="color:#e0e2db">Welcome To Mumblr</h1>
 	</div>
-	
-	<div class="grid-container">
-		<div class="grid-left">
-		<img src = "../../images/mumblr.jpg" width="400" height="400"></br>
-		<!-- Trigger/Open The Modal -->
-		<button id="myBtn">Open Modal</button>
+	<div class="row">
+	<div class="col-md-4">
+<!-- 		<div class="grid-left"><br>
+		<img src = "../../images/mumblr.jpg" width="400" height="400"><br><br>
+		Trigger/Open The Modal
+		<button id="myBtn" class="btn btn-success" >Sign In</button> -->
 		</div>
 	
 	
-		<div class= "grid-right">
-			<h2>Sign up</h2>
-			<div class="form">
+		<div class= "col-md-4">
+			<h2 align="center">Sign up</h2>
+			<div class="form" align="center">
 				<p th:text="${errorMsg}" name="errorMsg" id="errorMsg"></p>
 				<form action="register" method="post">
 				
-					<input type="text" name="fname" id="fname" placeholder="First name" th:value="${details?.fname}">
-					<input type="text" name="lname" id="lname" placeholder="Last name" th:value="${details?.lname}"></br></br>
-					<input type="email" name="email" id="email" placeholder="Email" th:value="${details?.email}"></br></br>
-					<input type="password" name="pass" id="pass" placeholder="Password"></br></br>
-					<input type="password" name="pass_c" id="pass_c" placeholder="Confirm password"></br></br>
+					<input type="text" name="fname" id="fname" placeholder="First name" th:value="${details?.fname}" class="form-control input-half">
+					<input type="text" name="lname" id="lname" placeholder="Last name" th:value="${details?.lname}" class="form-control input-half">
+					<input type="email" name="email" id="email" placeholder="Email" th:value="${details?.email}"class="form-control input-half">
+					<input type="password" name="pass" id="pass" placeholder="Password"class="form-control input-half">
+					<input type="password" name="pass_c" id="pass_c" placeholder="Confirm password"class="form-control input-half">
 					
-					<select name="b_month" id="b_month">
+					<div class="row">
+					<div class="col-md-4">
+					<select name="b_month" id="b_month" class="form-control">
 						<option value="1">Jan</option>
 						<option value="2">Feb</option>
 						<option value="3">March</option>
@@ -50,7 +62,9 @@
 						<option value="11">Nov</option>
 						<option value="12">Dec</option>
 					</select>
-					<select name="b_day" id="b_day">
+					</div>
+					<div class="col-md-4">
+					<select name="b_day" id="b_day" class="form-control">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -83,28 +97,34 @@
 						<option value="30">30</option>
 						<option value="31">31</option>
 					</select>
-					<select name="b_year" id="b_year"></select></br></br>
-					<button type="submit" class="btn btn-success">Sign Up</button>
+					</div>
+					<div class="col-md-4"><select name="b_year" id="b_year" class="form-control"></select></div>
+					</div>
+					<button type="submit" class="btn btn-success form-control">Sign Up</button>
+					
 				</form>
+				<button id="myBtn" class="btn btn-success" >Sign In</button>
 			</div>
 		</div>
+	<div class="col-md-4"></div>
 	</div>
-	
+	</div>
 
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
 	<!-- Modal content -->
+	
 	<div class="modal-content">
-		<span class="close">&times;</span>
+	<span class="close">&times;</span>
+		<div class="modal-header">Sign in</h3></div>
+	
 		<form action="login" method="post"> <!-- wala pang homepage.html, testing purposes only-->
-	    	<input type="email" name="emailLogin" id="emailLogin" placeholder="Email"></br>
-			<input type="password" name="passLogin" id="passLogin" placeholder="Password"></br></br>
-			
-			<button type="submit" class="btn btn-success">Login</button>
+			Email : <input type="email" name="emailLogin" id="emailLogin" placeholder="Enter Email" class = "input-design">
+	    	Password : <input type="password" name="passLogin" id="passLogin" placeholder="Enter Password" class = "input-design">
+			<button type="submit" class="button-design">Login</button>
 		</form>
 	</div>
-</div>
 </div>
 </body>
 </html>
