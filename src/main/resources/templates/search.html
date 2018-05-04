@@ -4,13 +4,17 @@
 <meta charset="ISO-8859-1">
 <title>User Search</title>
 <link rel="stylesheet" href="../../css/flatly-bootstrap.css">
+<link rel="stylesheet" href="../../css/design.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container" th:each="user : ${users}">
 		<div class="col-md-3"></div>
 		<div class="col-md-6" th:if="${user.id} != ${session.userAcc.id}">
-			<h2 th:text="${user.fullName}"></h2>
+			<form action="viewprofile" method="post">
+				<input type="hidden" id="searchQuery" name="searchQuery" th:value="${query}">
+				<button type="submit" id="view_btn" name="view_btn" th:text="${user.fullName}" th:value="${user.id}" class="link-button"></button>
+			</form>
 			<p th:utext="${user.email}"></p>
 			<form action="followuser" method="post">
 				<input type="hidden" id="searchQuery" name="searchQuery" th:value="${query}">

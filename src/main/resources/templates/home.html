@@ -41,9 +41,10 @@
 			<h2 th:text="${post.poster}"></h2>
 			<p th:utext="${post.content}"></p>
 			<p th:text="${post.postDate}" class="formatUTC"></p>
-			<!-- <p th:text="${post.postTime}"></p>-->
+			<div th:if="${post.posterID} == ${session.userAcc.id}">
 			<button type="submit" id="update_btn" name="update_btn" class="btn btn-info">Update!</button>
 			<button type="submit" id="delete_btn" name="delete_btn" class="btn btn-info">Delete!</button>
+			</div>
 		</div>
 		<div class="col-md-3"></div>
 	</div>
