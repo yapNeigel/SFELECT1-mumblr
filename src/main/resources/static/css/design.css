@@ -9,7 +9,9 @@
      text-decoration:underline;
      cursor:pointer;
 }
-
+.h2-design {
+    color:white;
+}
 .errorMessage {
   border:2px solid red;
 }
