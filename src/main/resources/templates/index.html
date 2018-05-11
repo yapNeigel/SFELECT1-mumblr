@@ -8,34 +8,17 @@
 	<script src="../../js/homepage.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="../../css/design.css">
 	<link rel="stylesheet" href="../../css/flatly-bootstrap.css">
-	<style>
-	select {
-    width: 20%;
-    padding: 10px 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f1f1f1;
-}
-</style>
 </head>
 
 
-<body bgcolor="#22333b">
+<body>
 	<div class="container">
 	<div class="site-header">
 		<h1 align="center" style="color:#e0e2db">Welcome To Mumblr</h1>
 	</div>
 	<div class="row">
-	<div class="col-md-4">
-<!-- 		<div class="grid-left"><br>
-		<img src = "../../images/mumblr.jpg" width="400" height="400"><br><br>
-		Trigger/Open The Modal
-		<button id="myBtn" class="btn btn-success" >Sign In</button> -->
-		</div>
-	
-	
+	<div class="col-md-4"></div>
 		<div class= "col-md-4">
-			<h2 align="center">Sign up</h2>
 			<div class="form" align="center">
 				<p th:text="${errorMsg}" name="errorMsg" id="errorMsg"></p>
 				<form action="register" method="post">
@@ -100,10 +83,10 @@
 					</div>
 					<div class="col-md-4"><select name="b_year" id="b_year" class="form-control"></select></div>
 					</div>
-					<button type="submit" class="btn btn-success form-control">Sign Up</button>
+					<button type="submit" class="btn btn-success form-control input-half">Sign Up</button>
 					
 				</form>
-				<button id="myBtn" class="btn btn-success" >Sign In</button>
+				<button id="myBtn" class="btn btn-success form-control input-half" >Sign In</button>
 			</div>
 		</div>
 	<div class="col-md-4"></div>
@@ -113,17 +96,23 @@
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
+
 	<!-- Modal content -->
-	
-	<div class="modal-content">
-	<span class="close">&times;</span>
-		<div class="modal-header">Sign in</h3></div>
-	
-		<form action="login" method="post"> <!-- wala pang homepage.html, testing purposes only-->
-			Email : <input type="email" name="emailLogin" id="emailLogin" placeholder="Enter Email" class = "input-design">
-	    	Password : <input type="password" name="passLogin" id="passLogin" placeholder="Enter Password" class = "input-design">
-			<button type="submit" class="button-design">Login</button>
-		</form>
+	<div class="row">
+	<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<div class="modal-content">
+			<span class="close" align="right">&times;</span>
+				<div class="modal-header">Sign in</h3></div>
+			
+				<form action="login" method="post">
+					Email : <input type="email" name="emailLogin" id="emailLogin" placeholder="Enter Email" class = "input-design">
+			    	Password : <input type="password" name="passLogin" id="passLogin" placeholder="Enter Password" class = "input-design">
+					<button type="submit" class="button-design">Login</button>
+				</form>
+			</div>
+		</div>
+	<div class="col-md-3"></div>
 	</div>
 </div>
 </body>

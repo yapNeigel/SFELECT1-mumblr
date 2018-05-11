@@ -1,3 +1,16 @@
+select {
+    width: 20%;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+body { 
+    background-image: url('../../images/websiteBG.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
 .link-button {
     background:none!important;
      border:none; 
@@ -63,8 +76,8 @@
 	    position: fixed; /* Stay in place */
 	    z-index: 1; /* Sit on top */
 	    padding-top: 100px; /* Location of the box */
-	    padding-left: 400px;
-	    padding-right: 400px;
+	    /*padding-left: 400px;
+	    padding-right: 400px;*/
 	    left: 0;
 	    top: 0;
 	    width: 100%; /* Full width */
