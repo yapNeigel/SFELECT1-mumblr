@@ -2,17 +2,34 @@
  * This contains the JavaScript functions used in home.html
  */
 
+function updCon(data,content){
+	$(function() { $('.updContent').froalaEditor({
+		theme: 'custom'
+	}) });
+	document.getElementById("initContent"+data).style.display = "none";
+	document.getElementById("card-btns"+data).style.display = "none";
+	document.getElementById("editContent"+data).style.display = "block";
+}
+
+function canUpd(data){
+	document.getElementById("editContent"+data).style.display = "none";
+	document.getElementById("initContent"+data).style.display = "block";
+	document.getElementById("card-btns"+data).style.display = "block";
+}
+
+function delPost(data){
+	$('#delPostID').val(data);
+//	document.getElementById("delConfModal").style.display = "block";
+	$("#delConfModal").fadeIn();
+}
+
+function clsMod(){
+	$("#delConfModal").fadeOut();
+}
 $(document).ready(function (){
-	
-//	ClassicEditor.create( document.querySelector( '#content' ) ).catch( error => {
-//        console.error( error );
-//    } );
-	
-	$(function() { $('#content').froalaEditor() });
-	
-	/*CKEDITOR.replace( 'content',{
-	    filebrowserUploadUrl: 'https://api.imgur.com/3/upload'	
-	});*/
+	$(function() { $('#content').froalaEditor({
+		theme: 'custom'
+	}) });
 	
 	$('#post_btn').click(function(){
 		var now = new Date();

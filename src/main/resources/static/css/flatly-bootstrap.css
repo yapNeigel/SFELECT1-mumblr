@@ -4631,7 +4631,7 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 1.0rem;
+  border-radius: 0.25rem;
 }
 
 .card > hr {
@@ -5646,6 +5646,7 @@ button.close {
   width: auto;
   margin: 0.5rem;
   pointer-events: none;
+  z-index: 1050;
 }
 
 .modal.fade .modal-dialog {

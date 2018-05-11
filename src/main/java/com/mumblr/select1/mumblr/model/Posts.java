@@ -5,8 +5,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
 public class Posts implements Comparable<Posts>{
 	
+	@Id
 	private String id;
 	private String postDate;
 	private String content;
