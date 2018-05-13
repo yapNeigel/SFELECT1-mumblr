@@ -71,7 +71,7 @@
 							<button type="button" th:id="'cancel_final_btn' + ${iterStat.index}" name="cancel_btn" class="btn btn-danger" th:onclick="'javascript:canUpd(\'' + ${iterStat.index} + '\');'">Cancel</button>
 						</form>
 					</div>
-					<div class="card-btns" th:id="'card-btns' + ${iterStat.index}">
+					<div class="card-btns" th:if="${post.posterID} == ${session.userAcc.id}" th:id="'card-btns' + ${iterStat.index}">
 						<button type="button" name="update_btn" th:id="'update_btn' + ${iterStat.index}" class="btn btn-info" th:onclick="'javascript:updCon(\'' + ${iterStat.index} +'\',\''+ ${post.content} + '\');'">Update</button>
 						<button type="button" name="delete_btn" th:id="'delete_btn' + ${iterStat.index}" class="btn btn-danger" th:onclick="'javascript:delPost(\'' + ${post.id} + '\');'">Delete</button>
 					</div>
@@ -102,22 +102,5 @@
 			</div>
 		</div>
 	</div>
-
-	<!-------------------
-	<div class="container" th:each="post : ${userPosts}">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
-			<font color="white"><h2 th:text="${post.poster}"></h2>
-			<p th:utext="${post.content}"></p>
-			<p th:text="${post.postDate}" class="formatUTC"></p></font>
-			<div th:if="${post.posterID} == ${session.userAcc.id}">
-			<button type="submit" id="update_btn" name="update_btn" class="btn btn-info">Update!</button>
-			<button type="submit" id="delete_btn" name="delete_btn" class="btn btn-info">Delete!</button>
-			</div>
-		</div>
-		<div class="col-md-3"></div>
-	</div>
-	---------------------->
-	
 </body>
 </html>
