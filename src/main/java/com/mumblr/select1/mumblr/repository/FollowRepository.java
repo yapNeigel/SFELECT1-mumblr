@@ -8,4 +8,5 @@ import com.mumblr.select1.mumblr.model.Follow;
 
 public interface FollowRepository extends MongoRepository<Follow, String>{
 	public List<Follow>findByuserID(String userID);
+	public Long deleteByid(String id);
 }

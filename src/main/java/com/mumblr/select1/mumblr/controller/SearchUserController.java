@@ -26,4 +26,14 @@ public class SearchUserController {
 		modelAndView.addObject("users", userAccs);
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/backsearch", method={RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView back(@RequestParam("searchQuery") String fullName){
+		ModelAndView modelAndView = new ModelAndView();
+		List<Accounts> userAccs = ur.findByfullNameLikeIgnoreCase(fullName);
+		modelAndView.setViewName("search");
+		modelAndView.addObject("query", fullName);
+		modelAndView.addObject("users", userAccs);
+		return modelAndView;
+	}
 }

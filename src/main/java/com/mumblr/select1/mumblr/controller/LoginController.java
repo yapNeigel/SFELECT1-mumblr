@@ -2,8 +2,6 @@ package com.mumblr.select1.mumblr.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,12 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mumblr.select1.mumblr.model.Accounts;
+import com.mumblr.select1.mumblr.model.Comments;
 import com.mumblr.select1.mumblr.model.Follow;
 import com.mumblr.select1.mumblr.model.Posts;
+import com.mumblr.select1.mumblr.repository.CommentRepository;
 import com.mumblr.select1.mumblr.repository.FollowRepository;
 import com.mumblr.select1.mumblr.repository.PostsRepository;
 import com.mumblr.select1.mumblr.repository.UserRepository;
@@ -34,6 +33,8 @@ public class LoginController {
 	private PostsRepository pr;
 	@Autowired
 	private FollowRepository fr;
+	@Autowired
+	private CommentRepository cr;
 	
 	@RequestMapping(value="/home")
 	public String home(HttpSession httpSession, Model model){
@@ -41,6 +42,7 @@ public class LoginController {
 		if(httpSession.getAttribute("userAcc") != null){
 			Accounts acc = (Accounts) httpSession.getAttribute("userAcc");
 			List<Posts> posts = new ArrayList<>();
+			List<Comments> comments = new ArrayList<>();
 			List<Posts> userPosts = pr.findByPosterID(acc.getId());
 			List<Follow> followers = fr.findByuserID(acc.getId());
 			
@@ -56,7 +58,13 @@ public class LoginController {
 			Collections.sort(posts);
 			Collections.reverse(posts);
 			
+			for(Posts post : posts){
+				List<Comments> comment = cr.findBypostId(post.getId());
+				comments.addAll(comment);
+			}
+			
 			model.addAttribute("userPosts", posts);
+			model.addAttribute("comments", comments);
 			return "home";
 		} 
 
@@ -79,26 +87,8 @@ public class LoginController {
 				modelAndView.setViewName("index");
 			}else{
 				if(spe.checkPassword(pass, acc.getPass())){
-					
-					List<Posts> posts = new ArrayList<>();
-					List<Posts> userPosts = pr.findByPosterID(acc.getId());
-					List<Follow> followers = fr.findByuserID(acc.getId());
-					
-					posts.addAll(userPosts);
-					
-					if(followers != null){
-						for(Follow follower : followers){
-							List<Posts> followerPost = pr.findByPosterID(follower.getFollowersID());
-							posts.addAll(followerPost);
-						}
-					}
-					Collections.sort(posts);
-					Collections.reverse(posts);
-					
-					modelAndView.setViewName("home");
-					modelAndView.addObject("userPosts", posts);
-					modelAndView.addObject("loginUser", acc);
 					httpSession.setAttribute("userAcc", acc);
+					modelAndView.setViewName("redirect:/home");
 				}else{
 					modelAndView.setViewName("index");
 				}
@@ -109,16 +99,14 @@ public class LoginController {
 		
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/validating", method=RequestMethod.POST)
-	public boolean validate(HttpSession httpSession){
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession httpSession, Model model){
 		
 		if(httpSession.getAttribute("userAcc") != null){
-			
-		} else {
-			return false;
-		}
+			httpSession.invalidate();
+			return "index";
+		} 
 
-		return true;
+		return "index";
 	}
 }

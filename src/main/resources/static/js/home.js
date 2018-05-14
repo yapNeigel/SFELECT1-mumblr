@@ -17,11 +17,36 @@ function canUpd(data){
 	document.getElementById("card-btns"+data).style.display = "block";
 }
 
+function editComment(data,content){
+	
+	if(document.getElementById("editCommentSection"+data).style.display == "block"){
+		$("#editCommentSection"+data).css("display", "none");
+	} else {
+		$("#editCommentSection"+data).css("display", "block");
+	}
+}
+
+function delComment(data){
+	$('#delCommentId').val(data);
+	$("#delCommentConfModal").fadeIn();
+}
+
 function delPost(data){
 	$('#delPostID').val(data);
-//	document.getElementById("delConfModal").style.display = "block";
 	$("#delConfModal").fadeIn();
 }
+
+function comment(data){
+	
+	if(document.getElementById("commentArea"+data).style.display == "block"){
+		$("#commentArea"+data).css("display", "none");
+	} else {
+		$("#commentArea"+data).css("display", "block");
+	}
+
+}
+
+
 
 function clsMod(){
 	$("#delConfModal").fadeOut();
@@ -38,9 +63,28 @@ $(document).ready(function (){
 		$('#postDate').val(utcfinal);
 	});
 	
+	$('#commentSubmit').click(function(){
+		var now = new Date();
+		var utcDate1 = new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(),now.getUTCMilliseconds()));
+		var utcfinal = utcDate1.toUTCString();
+		$('#commentDate').val(utcfinal);
+	});
+	
 	$('.formatUTC').each(function(i) {
 		var date = new Date(this.innerHTML);
 		this.innerHTML = formatDate(date);
+	});
+	
+	$('.commentContent').each(function() {
+		$(".commentContent").froalaEditor({
+			theme: 'custom'
+		});
+	});
+	
+	$('.editCommentContent').each(function() {
+		$(".editCommentContent").froalaEditor({
+			theme: 'custom'
+		});
 	});
 	
 	function formatDate(date) {
@@ -57,4 +101,6 @@ $(document).ready(function (){
 		
 		return strMonths[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " at " + strTime;
 	}
+	
+	
 });
