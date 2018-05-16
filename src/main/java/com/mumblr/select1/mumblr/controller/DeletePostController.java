@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mumblr.select1.mumblr.repository.CommentRepository;
 import com.mumblr.select1.mumblr.repository.PostsRepository;
 
 @Controller
 public class DeletePostController {
 	@Autowired
 	private PostsRepository pr;
+	@Autowired
+	private CommentRepository cr;
 	
 	@RequestMapping(value="/deletepost", method=RequestMethod.POST)
 	public ModelAndView save(HttpSession httpSession, @RequestParam(value="delPostID", required=false) String postID){
 		ModelAndView modelAndView = new ModelAndView();
+		cr.deleteBypostId(postID);
 		pr.deleteByid(postID);
 		modelAndView.setViewName("redirect:/home");
 		return modelAndView;

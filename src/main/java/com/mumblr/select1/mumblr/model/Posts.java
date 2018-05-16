@@ -15,28 +15,26 @@ public class Posts implements Comparable<Posts>{
 	private String content;
 	private String poster;
 	private String posterID;
-	private int likes;
 	private Comments[] comment;
 	
 	public Posts(){
 		
 	}
 	
-	public Posts(String id, String posterID, String postDate, String content, String poster, int likes){
+	public Posts(String id, String posterID, String postDate, String content, String poster){
 		this.id = id;
 		this.posterID = posterID;
 		this.postDate = postDate;
 		this.content = content;
 		this.poster = poster;
-		this.likes = likes;
 		
 	}
 	
 	@Override
     public String toString(){
         return String.format(
-    		"Posts[id=%s, posterID=%s, postDate='%s', content='%s', poster='%s', likes='%s',"
-    		+ " comment='%s']", id, posterID, postDate, content, poster, likes, comment);
+    		"Posts[id=%s, posterID=%s, postDate='%s', content='%s', poster='%s',"
+    		+ " comment='%s']", id, posterID, postDate, content, poster,  comment);
     }
 	
 	@Override
@@ -94,14 +92,6 @@ public class Posts implements Comparable<Posts>{
 
 	public void setPoster(String poster) {
 		this.poster = poster;
-	}
-
-	public int getLikes() {
-		return likes;
-	}
-
-	public void setLikes(int likes) {
-		this.likes = likes;
 	}
 
 	public Comments[] getComment() {

@@ -10,4 +10,5 @@ public interface CommentRepository extends MongoRepository<Comments, String>{
 	public List<Comments>findBypostId(String postId);
 	public Comments findByid(String id);
 	public Long deleteByid(String id);
+	public Long deleteBypostId(String postId);
 }

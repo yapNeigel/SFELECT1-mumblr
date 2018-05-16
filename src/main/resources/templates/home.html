@@ -79,6 +79,7 @@
 					<hr>
 					<div th:each="comment : ${comments}" th:if="${comment.postId} == ${post.id}">
 						<p th:utext="${comment.commentContent}"></p>
+						<small class="text-muted formatUTC" th:text="${comment.commentDate}"></small>
 						<div class="editCommentSection" th:id="'editCommentSection' + ${iterStat.index}" style="display: none;">
 							<form action="editcomment" method="post">
 								<textarea class="editCommentContent" name="editCommentContent" id="editCommentContent" rows="3" ></textarea>
@@ -107,8 +108,8 @@
 							<input type="hidden" id="postId" name="postId" th:value="${post.id}">
 							<input type="hidden" id="commenterName" name="commenterName" th:value="${post.poster}">
 							<input type="hidden" id="commenterId" name="commenterId" th:value="${session.userAcc.id}">
-							<input type="hidden" id="commentDate" name="commentDate">
-							<input type="submit" id="commentSubmit" name="commentSubmit">
+							<input type="hidden" th:id="'commentDate' + ${iterStat.index}" name="commentDate">
+							<input type="submit" id="commentSubmit" name="commentSubmit" th:onclick="'javascript:commentDateSetter(\'' + ${iterStat.index} + '\');'">
 						</form>
 					</div>
 	    		</p>
@@ -154,7 +155,7 @@
 							<input type="hidden" id="delCommentId" name="delCommentId">
 							<button type="submit" id="'delete_final_btn" name="delete_final_btn" class="btn btn-danger">Delete</button>
 						</form>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal" th:onclick="'javascript:clsMod();'">Close</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" th:onclick="'javascript:clsCommentMod();'">Close</button>
 					</div>
 				</div>
 			</div>

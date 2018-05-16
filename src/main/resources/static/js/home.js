@@ -46,10 +46,24 @@ function comment(data){
 
 }
 
+function commentDateSetter(data){
+	
+	var now = new Date();
+	var utcDate1 = new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(),now.getUTCMilliseconds()));
+	var utcfinal = utcDate1.toUTCString();
+	console.log('test');
+	$('#commentDate'+data).val(utcfinal);
+
+}
+
 
 
 function clsMod(){
 	$("#delConfModal").fadeOut();
+}
+
+function clsCommentMod(){
+	$("#delCommentConfModal").fadeOut();
 }
 $(document).ready(function (){
 	$(function() { $('#content').froalaEditor({
@@ -61,13 +75,6 @@ $(document).ready(function (){
 		var utcDate1 = new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(),now.getUTCMilliseconds()));
 		var utcfinal = utcDate1.toUTCString();
 		$('#postDate').val(utcfinal);
-	});
-	
-	$('#commentSubmit').click(function(){
-		var now = new Date();
-		var utcDate1 = new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(),now.getUTCMilliseconds()));
-		var utcfinal = utcDate1.toUTCString();
-		$('#commentDate').val(utcfinal);
 	});
 	
 	$('.formatUTC').each(function(i) {
