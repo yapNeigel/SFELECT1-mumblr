@@ -24,8 +24,11 @@
 				<form action="register" method="post">
 				
 					<input type="text" name="fname" id="fname" placeholder="First name" th:value="${details?.fname}" class="form-control input-half">
+					<div id="consoleFname"></div>
 					<input type="text" name="lname" id="lname" placeholder="Last name" th:value="${details?.lname}" class="form-control input-half">
+					<div id="consoleLname"></div>
 					<input type="email" name="email" id="email" placeholder="Email" th:value="${details?.email}"class="form-control input-half">
+					<div id="consoleEmail"></div>
 					<input type="password" name="pass" id="pass" placeholder="Password"class="form-control input-half">
 					<input type="password" name="pass_c" id="pass_c" placeholder="Confirm password"class="form-control input-half">
 					
@@ -87,6 +90,9 @@
 					
 				</form>
 				<button id="myBtn" class="btn btn-success form-control input-half" >Sign In</button>
+				
+				
+				
 			</div>
 		</div>
 	<div class="col-md-4"></div>
@@ -107,9 +113,56 @@
 			
 				<form action="login" method="post">
 					Email : <input type="email" name="emailLogin" id="emailLogin" placeholder="Enter Email" class = "input-design">
+			    	<div id="emailConsole"></div>
 			    	Password : <input type="password" name="passLogin" id="passLogin" placeholder="Enter Password" class = "input-design">
-					<button type="submit" class="button-design">Login</button>
+			    	<div id="passwordConsole"></div>
+					<button name="loginBtn" id="loginBtn" type="submit" class="button-design" onclick="validateEntry(); validatePassword();">Login</button>
 				</form>
+				<script>
+					function checkInputEmail(){
+				    var inputEmail = document.getElementById('emailLogin').value;
+				    
+				    if(inputEmail.length == 0){
+				        throw new Error('Please provide an email address.');
+				    }else if(inputEmail.indexOf('@')===-1){
+				        throw  new Error('Please provide a valid email address.');
+				    	}
+					}
+					
+					function validateEntry(){
+					    try{
+					        checkInputEmail();
+					    }catch(error){
+					        document.getElementById('emailConsole').innerHTML = 
+					            "<h6 style='color:red'>" + error.message + "</h6>";
+					        $("form").submit(function(e){
+					            e.preventDefault();
+					        });
+					    }
+					}
+					
+					function checkPassword(str){
+						var inputPassword = document.getElementById('passLogin').value;
+					    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+					    if(inputPassword.length == 0){
+					    	throw new Error('Please input password');
+					    }else{
+					    	return re.test(str);	
+					    }
+					}
+					
+					function validatePassword(){
+						try{
+							checkPassword();
+						}catch(error2){
+							document.getElementById('passwordConsole').innerHTML = 
+					            "<h6 style='color:red'>" + error2.message + "</h6>";
+							 $("form").submit(function(e){
+						            e.preventDefault();
+						        });
+						}
+					}
+				</script>
 			</div>
 		</div>
 	<div class="col-md-3"></div>
