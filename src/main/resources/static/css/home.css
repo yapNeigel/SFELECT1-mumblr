@@ -1,0 +1,8 @@
+.editContentStyle{
+	display: none;
+}
+
+.modal{
+	padding-top: 100px;
+	background-color: rgba(0,0,0,0.5);
+}

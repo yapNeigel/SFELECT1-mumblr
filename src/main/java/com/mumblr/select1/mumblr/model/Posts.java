@@ -1,24 +1,66 @@
 package com.mumblr.select1.mumblr.model;
 
-public class Posts {
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+
+public class Posts implements Comparable<Posts>{
 	
+	@Id
 	private String id;
 	private String postDate;
-	private String postTime;
 	private String content;
 	private String poster;
-	private int likes;
+	private String posterID;
 	private Comments[] comment;
 	
-	Posts(){
+	public Posts(){
+		
+	}
+	
+	public Posts(String id, String posterID, String postDate, String content, String poster){
+		this.id = id;
+		this.posterID = posterID;
+		this.postDate = postDate;
+		this.content = content;
+		this.poster = poster;
 		
 	}
 	
 	@Override
     public String toString(){
         return String.format(
-    		"Accounts[id=%s, postDate='%s', content='%s', poster='%s', likes='%s', comment='%s']", id, postDate, content, poster, likes, comment);
+    		"Posts[id=%s, posterID=%s, postDate='%s', content='%s', poster='%s',"
+    		+ " comment='%s']", id, posterID, postDate, content, poster,  comment);
     }
+	
+	@Override
+	  public int compareTo(Posts o) {
+		String string = getPostDate();
+		String stringTwo = o.getPostDate();
+		DateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
+		Date date = null;
+		Date date1 = null;
+		try {
+			date = format.parse(string);
+			date1 = format.parse(stringTwo);
+			return date.compareTo(date1);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		return date.compareTo(date1);
+	  }
+
+	public String getPosterID() {
+		return posterID;
+	}
+
+	public void setPosterID(String posterID) {
+		this.posterID = posterID;
+	}
 
 	public String getId() {
 		return id;
@@ -52,27 +94,11 @@ public class Posts {
 		this.poster = poster;
 	}
 
-	public int getLikes() {
-		return likes;
-	}
-
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-
 	public Comments[] getComment() {
 		return comment;
 	}
 
 	public void setComment(Comments[] comment) {
 		this.comment = comment;
-	}
-
-	public String getPostTime() {
-		return postTime;
-	}
-
-	public void setPostTime(String postTime) {
-		this.postTime = postTime;
 	}
 }

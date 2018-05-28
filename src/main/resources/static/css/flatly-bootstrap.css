@@ -50,6 +50,8 @@
           box-sizing: border-box;
 }
 
+#tdR {text-align:right;}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -76,6 +78,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #22333b;
+  background-image: ("../../images/websiteBG.jpg");
 }
 
 [tabindex="-1"]:focus {
@@ -1680,7 +1683,6 @@ pre code {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 1rem;
   background-color: transparent;
 }
 
@@ -4651,7 +4653,7 @@ input[type="button"].btn-block {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-  padding: 1.25rem;
+  padding: 0.0rem 1.0rem;
 }
 
 .card-title {
@@ -4678,7 +4680,7 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.10);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -4691,9 +4693,9 @@ input[type="button"].btn-block {
 }
 
 .card-footer {
-  padding: 0.75rem 1.25rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 0.0rem .50rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-top: 1px rgba(0, 0, 0, 0.125);
 }
 
 .card-footer:last-child {
@@ -5644,6 +5646,7 @@ button.close {
   width: auto;
   margin: 0.5rem;
   pointer-events: none;
+  z-index: 1050;
 }
 
 .modal.fade .modal-dialog {
